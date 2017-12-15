@@ -1,0 +1,12 @@
+.redabm {
+    r:4;
+    fill: rgba(2,2,200,0.5);
+    stroke: steelblue;
+    stroke-width: 1px;
+}
+
+svg {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: rgba(200,200,200,0.5);
+}
