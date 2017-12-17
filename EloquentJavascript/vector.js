@@ -1,5 +1,5 @@
 /*
- * main.js
+ * vector.js
  * 
  * Copyright 2017 Dr Ric Colasanti <pi@raspberry>
  * 
@@ -20,11 +20,33 @@
  * 
  * 
  */
-(function(){
-    console.log("start")
+ 
+ (function() {
+     
+    // This function os only visable from with in this module 
+    function addNothing(value){
+        return value;
+    }
+
+
+    function Vector(_x,_y){
+        this.x = addNothing(_x);
+        this.y = _y;
+        return Vector;
+    }
     
-    test = new Grid(10,10) 
-    test.set(new Vector(5,5),10)
-    test.log(new Vector(5,5))
-    
+    Vector.prototype.plus = function(_other){
+        return new Vector(this.x+_other.x,this.y+_other.y)
+    }
+
+  // export is ont avalable client side nust import with <script>  
+  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+    module.exports = Vector;
+  else
+    window.Vector = Vector;
 })();
+ 
+ 
+
+
+
