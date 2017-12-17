@@ -17,6 +17,45 @@
                 <g class="chart" transform="translate(20,20)"></g>
             </svg>
         </div>
+        
+        <div class="card">
+            <div class="card-body">
+            <pre>
+                <code>
+
+            var svg = d3.select("#svgcanvas .chart")
+
+            function update() {
+
+                // Adds any new data and any new elemnts
+                var abm = svg.selectAll('circle.abm')
+                    .data(agents)
+                    .enter()
+                    .append('circle')
+                    .attr("class",function(d){return d.type})
+                    .classed("abm",true)
+                    
+                // updates the visuals of the element with data
+                // has to get all of thoes elements first
+                var abmUpdate = svg.selectAll('circle.abm')
+                    .data(agents)
+                    .attr('cx', function(d) {
+                        return d.xpos;
+                    })
+                    .attr('cy', function(d) {
+                        return d.ypos;
+                    })
+                    
+
+                // removes any elements that have no data attached
+                abmUpdate.exit().remove()
+}
+ 
+        
+                </code>
+            </pre>   
+        </div>
+        </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
