@@ -22,4 +22,48 @@
  */
 (function(){
     console.log("start")
+    
+    function Vector(_x,_y){
+        this.x = _x;
+        this.y = _y;
+    }
+    
+    Vector.prototype.plus = function(_other){
+        return new Vector(this.x+_other.x,this.y+_other.y)
+    }
+    
+    function Grid(_width,_height){
+        this.space = new Array(_width * _height);
+        this.width = _width;
+        this.height = _height;
+    }
+    
+    Grid.prototype.isInside = function(_vector){
+        if(_vector.x <0){return false}
+        if(_vector.y<0){return false}
+        if(_vector.x>=this.width){return false};
+        if(_vector.y>=this.height){return false};
+        return true
+    }
+
+    Grid.prototype.get = function(_vector){
+        return this.space[_vector.x + this.width * _vector.y]
+    }
+    
+    Grid.prototype.set = function(_vector,value){
+        return this.space[_vector.x + this.width * _vector.y] = value
+    }
+    
+    Grid.prototype.log = function(_vector) {
+          console.log(
+            this.get(_vector) + ' site...'
+          );
+          return this;
+        };
+
+    
+    test = new Grid(10,10) 
+    test.set(new Vector(5,5),10)
+    test.log(new Vector(5,5))
+    
 })();
