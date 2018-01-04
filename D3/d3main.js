@@ -10,7 +10,7 @@ function update() {
         .append('circle')
         .attr("class",function(d){return d.type})
         .classed("abm",true)
-        
+
     // updates the visuals of the element with data
     // has to get all of thoes elements first
     var abmUpdate = svg.selectAll('circle.abm')
@@ -21,7 +21,7 @@ function update() {
         .attr('cy', function(d) {
             return d.ypos;
         })
-        
+
 
     // removes any elements that have no data attached
     abmUpdate.exit().remove()
