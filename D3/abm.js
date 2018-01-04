@@ -4,6 +4,11 @@ var Agent = function(_x,_y,_type) {
   this.type =_type;
 };
 
+/**
+ * Move function for agent. Takes a maximum distance as seed for random in x and y pos. Returns the object so that it can be chained
+ * @param  {[double]} dist [the maximum distance moved in one itheration]
+ * @return {[Agent]}      [description]
+ */
 Agent.prototype.moveRandom = function(dist) {
   this.xpos += ((Math.random() * 2.0) - 1.0)*dist;
   this.ypos += ((Math.random() * 2.0) - 1.0)*dist;

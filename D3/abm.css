@@ -1,7 +1,7 @@
 .redabm {
     r:4;
     fill: rgba(2,2,200,0.5);
-    stroke: steelblue;
+    stroke: rgba(2,2,200,1.0);
     stroke-width: 1px;
 }
 
