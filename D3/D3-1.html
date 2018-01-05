@@ -24,18 +24,80 @@
 -->
 
 <head>
-<meta charset="utf-8" />
-<title>untitled</title>
-<meta name="generator" content="Geany 1.31" />
+  <meta charset="utf-8" />
+  <title>untitled</title>
+  <meta name="generator" content="Geany 1.31" />
+
 </head>
 
 <body>
-<div id="dataArea"></div>
-<button type="button" onclick="addData()">Add</button>
+  <div style="margin: 25px; font-family: Arial, Helvetica, sans-serif">
+    <h2>D3 Basics</h2>
 
-<script src="../lib/jquery-3.2.1.min.js"></script>
-<script src="../lib/d3.min.js"></script>
-<script src="main.js"></script>
+  <div class="flex-container" style="display: flex">
+    <div id="dataArea" style="flex-grow: 4">
+    <button type="button" onclick="addData()">Add</button>
+  </div>
+    <div style="flex-grow: 6,">
+      <pre>
+        <code>
+        var dataset = Array(7);
+        for (var i = 0; i < dataset.length; i++) {
+          dataset[i] = i;
+        }
+
+        function update() {
+          ///selects all of the paragraphs that are currently on the page
+          var currentTxt = d3.select("#dataArea").selectAll("p")
+            .data(dataset)
+
+          console.log(currentTxt);
+          //update thoes data that are present
+          // set old data to blue
+          currentTxt.style("color", "rgba(0,0,200,1)")
+            .text(function(d) {
+              return d;
+            })
+
+          // list of new data
+          var newTxt = currentTxt.enter()
+
+          // append new svg to the d3 corisponding to the new data
+          newTxt.append("p")
+            .text(function(d) {
+              return d
+            })
+            .on("click", function(d, i) {
+              // attach function to remove data on click
+              dataset.splice(i, 1)
+              update()
+            })
+            // set new data as green
+            .style("color", "rgba(0,200,0,1)")
+            .style("cursor", "pointer")
+
+          // list of old data
+          var oldTxt = currentTxt.exit()
+          oldTxt.remove()
+        }
+
+        // called from add button
+        function addData() {
+          dataset.push(Math.floor((Math.random() * 10) + 1))
+          update()
+        }
+
+        update()
+
+      </code>
+    </pre>
+    </div>
+  </div>
+</div>
+
+  <script src="../lib/jquery-3.2.1.min.js"></script>
+  <script src="../lib/d3.min.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>

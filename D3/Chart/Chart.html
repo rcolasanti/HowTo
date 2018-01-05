@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Chart</title>
+  <style>
+    .bar {
+      font: 10px sans-serif;
+      background-color: rgb(148, 113, 170);
+      text-align: right;
+      padding: 6px;
+      margin: 1px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="man-chart">
+    <div class="bar" style="width: 40px;">4</div>
+    <div class="bar" style="width: 80px;">8</div>
+    <div class="bar" style="width: 150px;">15</div>
+    <div class="bar" style="width: 160px;">16</div>
+    <div class="bar" style="width: 230px;">23</div>
+    <div class="bar" style="width: 420px;">42</div>
+  </div>
+  <br/>
+  <div class="chart">
+  </div>
+  <script>
+    var dataset = Array(6);
+    for (var i = 0; i < dataset.length; i++) {
+      dataset[i] = Math.floor((Math.random() * 50) + 1);
+    }
+    var chart = document.getElementsByClassName("chart")[0]
+    console.log(chart);
+    for (var i = 0; i < dataset.length; i++) {
+      var div = document.createElement("div");
+      div.className="bar";
+      div.style.width = dataset[i]*10+"px"
+      div.innerHTML = dataset[i]
+      chart.appendChild(div)
+    }
+  </script>
+</body>
+
+</html>
