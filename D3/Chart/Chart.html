@@ -8,6 +8,25 @@
 </head>
 
 <body>
+  <h2>HTML Chart CSS Code</h2>
+  <div class="display-code">
+    <pre>
+      <code>
+        .bar {
+          font: 10px sans-serif;
+          background-color: rgb(180, 150, 199);
+          text-align: right;
+          padding: 4px;
+          margin: 1px;
+          color: white;
+        }
+        .bar:hover {
+            background-color: rgb(150, 199, 162);
+            color: rgb(64, 64, 64);
+            cursor: pointer;
+        }      </code>
+    </pre>
+  </div>
   <h2>HTML Chart</h2>
   <div id="man-chart">
     <div class="bar" style="width: 40px;">4</div>
@@ -29,7 +48,6 @@
       </code>
     </pre>
   </div>
-  <br/>
   <h2>JS Chart</h2>
   <div id="js-chart">
   </div>
@@ -102,7 +120,6 @@
               dataset.splice(i, 1)
               update()
             })
-            .style("cursor", "pointer")
 
           // List of "current" divs with no data
           var oldBar = currentBar.exit()

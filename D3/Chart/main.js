@@ -52,7 +52,6 @@ function update() {
       dataset.splice(i, 1)
       update()
     })
-    .style("cursor", "pointer")
 
   // List of "current" divs with no data
   var oldBar = currentBar.exit()
