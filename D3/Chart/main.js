@@ -34,8 +34,8 @@ function update() {
   var newBar = currentBar.enter()
   // Append "new" div to the d3 corisponding to the new data
   newBar.append("div")
-    .merge(currentBar)// allows for the update of old data
     .attr("class", "bar")
+    .merge(currentBar)// allows for the update of old data all bellow is applied to both old and new data
     .text(function(d) {
       return (d)
     })

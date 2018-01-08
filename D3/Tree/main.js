@@ -46,7 +46,6 @@ function update() {
   var currentNodes = d3.select("#svgArea").selectAll("g.node")
     .data(dNodes) // an array of all of the nodes of the tree
 
-
   var newNodes = currentNodes
     .enter()
     .append('g')
@@ -73,8 +72,6 @@ function update() {
   })
 
   currentNodes.exit().remove()
-
-
 }
 
 // Creates a curved  path from source to target nodes

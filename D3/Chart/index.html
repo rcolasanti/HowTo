@@ -96,19 +96,13 @@
           ///Selects all of the divs that are currently on the page
           var currentBar = d3.select("#d3-dy-chart").selectAll("div")
             .data(dataset)
-          // Updates data of "current" divs
-          currentBar.text(function(d) {
-              return (d)
-            })
-            .style("width", function(d) {
-              return d * 10 + "px"
-            })
 
           // List of new data
           var newBar = currentBar.enter()
-          // Append "new" div to the d3 corresponding to the new data
+          // Append "new" div to the d3 corisponding to the new data
           newBar.append("div")
             .attr("class", "bar")
+            .merge(currentBar)// allows for the update of old data all bellow is applied to both old and new data
             .text(function(d) {
               return (d)
             })
@@ -116,16 +110,17 @@
               return d * 10 + "px"
             })
             .on("click", function(d, i) {
-              // Attach function to remove data on click
+              // aAttach function to remove data on click
               dataset.splice(i, 1)
               update()
             })
 
           // List of "current" divs with no data
           var oldBar = currentBar.exit()
-          // Remove those divs
+          // emove thoes divs
           oldBar.remove()
-        }      </code>
+        }
+       </code>
     </pre>
   </div>
   <script src="../../lib/jquery-3.2.1.min.js"></script>
