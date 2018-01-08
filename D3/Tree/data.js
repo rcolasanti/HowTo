@@ -33,4 +33,12 @@ function find(object,searchFor) {
   return null;
 }
 
+
+function addData(object,newName){
+  if(object.hasOwnProperty('children')==false){
+    object.children=[]
+  }
+  object.children.push({"name":newName})
+}
+
 console.log(find(data,"A-1-1"));
