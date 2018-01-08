@@ -28,18 +28,13 @@ function update() {
   ///Selects all of the divs that are currently on the page
   var currentBar = d3.select("#d3-dy-chart").selectAll("div")
     .data(dataset)
-  // Updates data of "current" divs
-  currentBar.text(function(d) {
-      return (d)
-    })
-    .style("width", function(d) {
-      return d * 10 + "px"
-    })
+
 
   // List of new data
   var newBar = currentBar.enter()
   // Append "new" div to the d3 corisponding to the new data
   newBar.append("div")
+    .merge(currentBar)// allows for the update of old data
     .attr("class", "bar")
     .text(function(d) {
       return (d)
