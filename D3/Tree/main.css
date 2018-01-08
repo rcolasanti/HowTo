@@ -1,9 +1,15 @@
 circle{
-  fill:rgb(133, 53, 67) ;
+  fill:rgb(90, 153, 189) ;
+  stroke-width: 2px;
+  stroke:rgb(198, 127, 43)
 }
 
 .link {
   fill: none;
   stroke-width:1;
-  stroke:rgb(52, 52, 52);
+  stroke:rgb(99, 99, 99);
+  font-family: Arial, Helvetica, sans-serif
+}
+text{
+  font-family: Arial, Helvetica, sans-serif
 }
