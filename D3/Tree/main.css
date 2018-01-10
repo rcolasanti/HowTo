@@ -1,3 +1,11 @@
+body {
+    padding-top: 50px;
+}
+#info {
+    padding-top: 50px;
+}
+
+
 circle{
   stroke-width: 2px;
   stroke:rgb(198, 127, 43)

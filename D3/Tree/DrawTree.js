@@ -14,6 +14,9 @@ var margin = {
 var svg = d3.select("#svgCanvas").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
+    .call(d3.zoom().on("zoom", function() {
+        svg.attr("transform", d3.event.transform)
+    }))
     .append("g")
     .attr("transform", "translate(" +
         margin.left + "," + margin.top + ")");
@@ -76,6 +79,12 @@ function update(source) {
             d3.event.preventDefault();
             addNode(d)
         })
+        .on("mouseover", function(d) {
+            $("#name").text(d.data.name);
+        })
+        .on("mouseout", function() {
+            $("#name").text("");
+        })
         .attr('cursor', 'pointer');
 
     // Add Circle for the nodes
@@ -91,7 +100,7 @@ function update(source) {
             return d.children ? -13 : 13;
         })
         .attr("text-anchor", function(d) {
-            return d.children  ? "end" : "start";
+            return d.children ? "end" : "start";
         })
         .text(function(d) {
             return d.data.name;
@@ -112,23 +121,22 @@ function update(source) {
         .transition()
         .duration(duration)
         .attr('r', 10)
-        .attr("fill",function(d){
-          if(d.children || d._children){
-            console.log(d.data.name);
-            return "rgb(90, 153, 189)"
-          }else{
-            return "rgb(255,255,255)"
-          }
+        .attr("fill", function(d) {
+            if (d.children || d._children) {
+                return "rgb(90, 153, 189)"
+            } else {
+                return "rgb(255,255,255)"
+            }
         })
 
-        nodeUpdate.select("text")
+    nodeUpdate.select("text")
         .transition()
         .duration(duration)
         .attr("x", function(d) {
             return d.children ? -13 : 13;
         })
         .attr("text-anchor", function(d) {
-            return d.children  ? "end" : "start";
+            return d.children ? "end" : "start";
         })
 
     // Remove any exiting nodes
@@ -207,25 +215,25 @@ function update(source) {
 }
 
 function addNode(d) {
-  var newDataObject = {
-      "name":Math.random().toString(36).substring(9)
+    var newDataObject = {
+        "name": Math.random().toString(36).substring(9)
     }
-  var newNode = d3.hierarchy(newDataObject)
-  newNode.depth = d.depth+1
-  newNode.height = d.height-1
-  newNode.parent = d
-  if(!d.children){
-    if(!d._children){
-      d.children=[]
-      d.children.push(newNode)
-    }else{
-      d.children = d._children;
-      d.children.push(newNode)
+    var newNode = d3.hierarchy(newDataObject)
+    newNode.depth = d.depth + 1
+    newNode.height = d.height - 1
+    newNode.parent = d
+    if (!d.children) {
+        if (!d._children) {
+            d.children = []
+            d.children.push(newNode)
+        } else {
+            d.children = d._children;
+            d.children.push(newNode)
+        }
+    } else {
+        d.children.push(newNode);
     }
-  }else{
-    d.children.push(newNode);
-  }
-  update(d)
+    update(d)
 }
 // Toggle children on click.
 function click(d) {
